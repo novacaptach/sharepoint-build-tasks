@@ -1,6 +1,7 @@
 param(
     [string]$project, 
     [string]$publishProfile, 
+    [string]$publishDir, 	
     [string]$clean,
     [string]$vsVersion,
     [string]$msBuildArgs,
@@ -10,6 +11,7 @@ param(
 
 Write-Verbose "Entering script SharePointAddInBuild.ps1"
 Write-Verbose "publishProfile = $publishProfile"
+Write-Verbose "publishDir = $publishDir"
 Write-Verbose "project = $project"
 Write-Verbose "clean = $clean"
 Write-Verbose "vsVersion = $vsVersion"
@@ -132,6 +134,12 @@ Write-Verbose "msBuildLocation = $msBuildLocation"
 $args = $msBuildArgs;
 
 $args = ('{0} /p:IsPackaging=true /p:"ActivePublishProfile={1}"' -f $args, $publishProfile)
+
+if ($publishDir)
+{
+    Write-Verbose ('adding PublishDir: {0}' -f $publishDir)
+    $args = ('{0} /p:"PublishDir={1}"' -f $args, $publishDir)
+}
 
 if ($vsLocation)
 {
