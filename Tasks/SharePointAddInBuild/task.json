@@ -1,0 +1,106 @@
+{
+    "id":"416391dc-a7f5-4be9-be80-824777d72f7a",
+    "name":"SharePointAddInBuild",
+    "friendlyName": "SharePoint Add-In Build",
+    "description": "Build a SharePoint Add-In",
+    "helpMarkDown": "[More Information](http://go.microsoft.com/fwlink/?LinkID=613727)",
+    "category": "Build",
+    "visibility": [
+                "Build"
+                  ],
+    "author": "IOZ AG",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "demands": [
+        "msbuild",
+        "visualstudio"
+    ],
+    "minimumAgentVersion": "1.83.0",
+    "groups": [
+        {
+            "name": "advanced",
+            "displayName": "Advanced",
+            "isExpanded": false
+        }
+    ],
+    "inputs": [
+        {
+            "name": "project",
+            "type": "filePath",
+            "label": "Add-In Project",
+            "defaultValue": "**\\*.csproj",
+            "required": true,
+            "helpMarkDown": "Relative path from repo root of the SharePoint Add-In projects to run.  Wildcards can be used.  For example, `**\\*.csproj` for all project files in all sub folders."
+        },
+        {
+            "name": "publishProfile",
+            "type": "string",
+            "label": "Publish Profile",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Publish profile which should be used to build the Add-In."
+        },
+        {
+            "name": "clean",
+            "type": "boolean",
+            "label": "Clean",
+            "defaultValue": "false",
+            "required": false
+        },
+        {
+            "name": "vsVersion",
+            "type": "pickList",
+            "label": "Visual Studio Version",
+            "required": false,
+            "helpMarkDown": "If the preferred version cannot be found, the latest version found will be used instead.",
+            "defaultValue": "14.0",
+            "options": {
+                "latest":"Latest",
+                "14.0": "Visual Studio 2015",
+                "12.0": "Visual Studio 2013",
+                "11.0": "Visual Studio 2012"
+            }
+        },
+        {
+            "name": "msbuildArgs",
+            "type": "string",
+            "label": "MSBuild Arguments",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Additional arguments passed to MSBuild.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "msbuildArchitecture",
+            "type": "pickList",
+            "label": "MSBuild Architecture",
+            "defaultValue": "x86",
+            "required": false,
+            "helpMarkDown": "Optionally supply the architecture (x86, x64) of MSBuild to run.",
+            "groupName": "advanced",
+            "options": {
+                "x86": "MSBuild x86",
+                "x64": "MSBuild x64"
+            }
+        },
+        {
+            "name": "logProjectEvents",
+            "type": "boolean",
+            "label": "Record Project Details",
+            "defaultValue": "true",
+            "required": false,
+            "groupName": "advanced"
+        }
+    ],
+    "instanceNameFormat": "Build SharePoint Add-In $(project)",
+    "execution": {
+        "PowerShell": {
+            "target": "$(currentDirectory)\\SharePointAddInBuild.ps1",
+            "argumentFormat": "",
+            "workingDirectory": "$(currentDirectory)"
+        }
+    }
+}
