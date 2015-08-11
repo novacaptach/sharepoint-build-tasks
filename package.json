@@ -1,0 +1,37 @@
+{
+  "name": "SharePoint.Tasks",
+  "version": "0.1.0",
+  "description": "Build task for building SharePoint Add-Ins and Solutions with TFS Build 2015 (vNext)",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iozag/sharepoint-build-tasks"
+  },
+  "keywords": [
+    "VSO",
+    "build",
+    "tasks",
+    "sharepoint"
+  ],
+  "author": "IOZ AG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iozag/sharepoint-build-tasks/issues"
+  },
+  "homepage": "https://github.com/iozag/sharepoint-build-tasks",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-typescript": "2.6.0",
+    "gulp-util": "^3.0.4",
+    "shelljs": "^0.3.0",
+    "through2": "^0.6.3",
+    "validator": "^3.33.0"
+  },
+  "dependencies": {
+    "q": "^1.2.0"
+  }
+}
