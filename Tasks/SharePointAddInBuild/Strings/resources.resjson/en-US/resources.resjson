@@ -1,0 +1,24 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "loc.friendlyName": "SharePoint Add-In Build",
+  "loc.helpMarkDown": "[More Information](http://go.microsoft.com/fwlink/?LinkID=613727)",
+  "loc.description": "Build a SharePoint Add-In",
+  "loc.instanceNameFormat": "Build SharePoint Add-In $(project)",
+  "loc.group.displayName.advanced": "Advanced",
+  "loc.input.label.project": "Add-In Project",
+  "loc.input.help.project": "Relative path from repo root of the SharePoint Add-In projects to run.  Wildcards can be used.  For example, `**\\*.csproj` for all project files in all sub folders.",
+  "loc.input.label.publishProfile": "Publish Profile",
+  "loc.input.help.publishProfile": "Publish profile which should be used to build the Add-In.",
+  "loc.input.label.publishDir": "Publish Directory",
+  "loc.input.help.publishDir": "Path into which the SharePoint Add-In should be deployed. Relative to the root of the repository.",
+  "loc.input.label.clean": "Clean",
+  "loc.input.label.vsVersion": "Visual Studio Version",
+  "loc.input.help.vsVersion": "If the preferred version cannot be found, the latest version found will be used instead.",
+  "loc.input.label.msbuildArgs": "MSBuild Arguments",
+  "loc.input.help.msbuildArgs": "Additional arguments passed to MSBuild.",
+  "loc.input.label.msbuildArchitecture": "MSBuild Architecture",
+  "loc.input.help.msbuildArchitecture": "Optionally supply the architecture (x86, x64) of MSBuild to run.",
+  "loc.input.label.logProjectEvents": "Record Project Details"
+}

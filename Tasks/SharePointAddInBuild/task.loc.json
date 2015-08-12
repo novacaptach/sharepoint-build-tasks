@@ -1,0 +1,117 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "id": "416391dc-a7f5-4be9-be80-824777d72f7a",
+  "name": "SharePointAddInBuild",
+  "friendlyName": "ms-resource:loc.friendlyName",
+  "description": "ms-resource:loc.description",
+  "helpMarkDown": "ms-resource:loc.helpMarkDown",
+  "category": "Build",
+  "visibility": [
+    "Build"
+  ],
+  "author": "IOZ AG",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [
+    "msbuild",
+    "visualstudio"
+  ],
+  "minimumAgentVersion": "1.83.0",
+  "groups": [
+    {
+      "name": "advanced",
+      "displayName": "ms-resource:loc.group.displayName.advanced",
+      "isExpanded": false
+    }
+  ],
+  "inputs": [
+    {
+      "name": "project",
+      "type": "filePath",
+      "label": "ms-resource:loc.input.label.project",
+      "defaultValue": "**\\*.csproj",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.project"
+    },
+    {
+      "name": "publishProfile",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.publishProfile",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.publishProfile"
+    },
+    {
+      "name": "publishDir",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.publishDir",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.publishDir"
+    },
+    {
+      "name": "clean",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.clean",
+      "defaultValue": "false",
+      "required": false
+    },
+    {
+      "name": "vsVersion",
+      "type": "pickList",
+      "label": "ms-resource:loc.input.label.vsVersion",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.vsVersion",
+      "defaultValue": "14.0",
+      "options": {
+        "latest": "Latest",
+        "14.0": "Visual Studio 2015",
+        "12.0": "Visual Studio 2013",
+        "11.0": "Visual Studio 2012"
+      }
+    },
+    {
+      "name": "msbuildArgs",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.msbuildArgs",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.msbuildArgs",
+      "groupName": "advanced"
+    },
+    {
+      "name": "msbuildArchitecture",
+      "type": "pickList",
+      "label": "ms-resource:loc.input.label.msbuildArchitecture",
+      "defaultValue": "x86",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.msbuildArchitecture",
+      "groupName": "advanced",
+      "options": {
+        "x86": "MSBuild x86",
+        "x64": "MSBuild x64"
+      }
+    },
+    {
+      "name": "logProjectEvents",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.logProjectEvents",
+      "defaultValue": "true",
+      "required": false,
+      "groupName": "advanced"
+    }
+  ],
+  "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\SharePointAddInBuild.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
