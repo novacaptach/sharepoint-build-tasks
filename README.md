@@ -5,12 +5,16 @@ Build task for building SharePoint Add-Ins and Solutions with TFS Build 2015 (vN
 * Make sure to have [node.js](https://nodejs.org/) installed.
 * Install TFS Extensions Command Line Utility
  
-    `npm install -g tfx-cli`
+```bash
+    npm install -g tfx-cli
+```
      
 * Download SharePoint build tasks
 * Upload build task to Visual Studio Online
 
-    `tfx build tasks upload --taskPath \Tasks\SharePointAddInBuild`
+    ```bash
+    tfx build tasks upload --taskPath \Tasks\SharePointAddInBuild`
+    ```
     
     * Enter the url of your Visual Studio Online collection
     * Enter the personal access token to access Visual Studio Online
