@@ -40,7 +40,7 @@
             "type": "string",
             "label": "Publish Profile",
             "defaultValue": "",
-            "required": false,
+            "required": true,
             "helpMarkDown": "Publish profile which should be used to build the Add-In."
         },
         {
@@ -49,7 +49,7 @@
             "label": "Publish Directory",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Path into which the SharePoint Add-In should be deployed. Relative to the root of the repository."
+            "helpMarkDown": "Path into which the SharePoint Add-In should be deployed. Relative to the path of the SharePoint Add-In project."
         },
         {
             "name": "clean",
