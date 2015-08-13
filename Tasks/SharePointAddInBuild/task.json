@@ -3,7 +3,7 @@
     "name":"SharePointAddInBuild",
     "friendlyName": "SharePoint Add-In Build",
     "description": "Build a SharePoint Add-In",
-    "helpMarkDown": "[More Information](http://go.microsoft.com/fwlink/?LinkID=613727)",
+    "helpMarkDown": "[More Information](https://github.com/iozag/sharepoint-build-tasks)",
     "category": "Build",
     "visibility": [
                 "Build"

@@ -3,7 +3,7 @@
 // *******************************************************
 {
   "loc.friendlyName": "SharePoint Add-In Build",
-  "loc.helpMarkDown": "[More Information](http://go.microsoft.com/fwlink/?LinkID=613727)",
+  "loc.helpMarkDown": "[More Information](https://github.com/iozag/sharepoint-build-tasks)",
   "loc.description": "Build a SharePoint Add-In",
   "loc.instanceNameFormat": "Build SharePoint Add-In $(project)",
   "loc.group.displayName.advanced": "Advanced",
