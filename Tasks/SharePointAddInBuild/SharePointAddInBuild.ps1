@@ -138,7 +138,7 @@ $args = ('{0} /p:IsPackaging=true /p:ActivePublishProfile="{1}"' -f $args, $publ
 if ([string]::IsNullOrEmpty($publishDir) -ne $true)
 {
     Write-Verbose ('adding PublishDir: {0}' -f $publishDir)
-    $args = ('{0} /p:PublishDir="{1}\"' -f $args, $publishDir.Trimend('\'))
+    $args = ('{0} /p:PublishDir="{1}\\"' -f $args, $publishDir.Trimend('\\'))
 }
 
 if ($vsLocation)
