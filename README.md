@@ -18,5 +18,4 @@ Build task for building SharePoint Add-Ins and Solutions with TFS Build 2015 (vN
     ```
     
 ## Usage
-* Add the "SharePoint Add-In Build" custom build step to your build definition.
-* Configure the custom build step
+See the [Wiki](https://github.com/iozag/sharepoint-build-tasks/wiki) for documentation.
