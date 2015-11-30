@@ -12,7 +12,7 @@
     ],    
     "description": "Tools for building SharePoint Add-Ins.",
     "categories": [
-        "Integrate"
+        "Build and release"
     ],
     "icons": {
         "default": "extension-icon.png"        
