@@ -23,6 +23,9 @@
         },
         {
             "path": "_build/Tasks/SharePointAddInVersioning"
+        },
+        {
+            "path": "_build/Tasks/SharePointAddInPatching"
         }
     ],
     "contributions": [
@@ -44,6 +47,16 @@
             ],
             "properties": {
                 "name": "_build/Tasks/SharePointAddInVersioning"
+            }
+        },
+        {
+            "id": "sharepoint-addin-patching",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "_build/Tasks/SharePointAddInPatching"
             }
         }
     ],
