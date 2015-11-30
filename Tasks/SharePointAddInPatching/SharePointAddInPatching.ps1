@@ -7,7 +7,7 @@ param(
     $Url,
     
     [String] [Parameter(Mandatory = $true)] 
-    $ClientId,
+    $ClientId
 )
 
 Write-Verbose "Entering script SharePointAddInPatching.ps1"
@@ -94,24 +94,52 @@ foreach ($af in $addInFiles)
     elseif ([System.IO.Path]::GetExtension($af) -eq ".app")
     {
         Write-Verbose "Detected packaged app for $af."
+        [System.Xml.XmlDocument] $xmlDoc = new-object System.Xml.XmlDocument
+        
         # Unpack Add-In
         Add-Type -assembly  System.IO.Compression.FileSystem
         $zip =  [System.IO.Compression.ZipFile]::Open($af, "Update")
-        $appManifestEntry = $zip.Entries.Where({$_.name -eq "AppManifest.xml"})
-        $appManifestStream = $appManifestEntry.Open()
 
         # Modify manifest
-        [System.Xml.XmlDocument] $appManifestDoc = new-object System.Xml.XmlDocument
-        $appManifestDoc.Load($appManifestStream)
-        UpdateManifest -AppManifest $appManifestDoc -Url $Url -ClientId $ClientId 
-
+        Write-Verbose "Patch AppManifest.xml in $af."
+        $appManifestEntry = $zip.Entries.Where({$_.name -eq "AppManifest.xml"})
+        $appManifestStream = $appManifestEntry.Open()
+        $xmlDoc.Load($appManifestStream)
+        UpdateManifest -AppManifest $xmlDoc -Url $Url -ClientId $ClientId
+                 
         # Save modifications back
         $appManifestStream.SetLength(0)
-        $appManifestDoc.Save($appManifestStream)
-
+        $xmlDoc.Save($appManifestStream)
+        
         # Repack Add-In
         $appManifestStream.Flush()
         $appManifestStream.Close()
+        
+        # Process elements
+        Write-Verbose "Looking for elements files in $af."
+        $elementsEntries = $zip.Entries.Where({$_.name.StartsWith("element")})
+        foreach ($elementEntry in $elementEntries)
+        {
+            Write-Verbose "Patch $elementEntry in $af."
+            
+            # Read content
+            $elementEntryStream = $elementEntry.Open()            
+            $elementEntryReader = [System.IO.StreamReader](elementEntryStream)
+            $elementEntryContent = $elementEntryReader.ReadToEnd()
+            $elementEntryReader.Close()
+            $elementEntryReader.Dispose()
+            
+            # Modify content
+            $elementEntryContent = $elementEntryContent -replace '~remoteAppUrl', $Url
+            
+            # Write content back
+            $elementEntryWriter = [System.IO.StreamWriter](elementEntryStream)
+            $elementEntryWriter.BaseStream.SetLength(0)
+            $elementEntryWriter.Write($elementEntryContent)
+            $elementEntryStream.Flush()
+            $elementEntryStream.Close()            
+        }
+
         $zip.Dispose()
     }
     else 
@@ -119,7 +147,7 @@ foreach ($af in $addInFiles)
         throw (Get-LocalizedString -Key "Not supported file type {0}." -ArgumentList $af)
     }
     
-    Write-Verbose "Applied version $Version to $af."
+    Write-Verbose "Finished processing $af."
 }
 
 Write-Verbose "Leaving script SharePointAddInVersioning.ps1"
