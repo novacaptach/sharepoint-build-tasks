@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "sharepoint-build-tasks",
     "name": "SharePoint Build Tools",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "publisher": "ioz",
     "public": false,
     "targets": [
@@ -28,6 +28,12 @@
             "path": "_build/Tasks/SharePointAddInPatching"
         }
     ],
+    "content": {
+        "details":
+        {
+            "path": "extension-details.md"
+        }
+    },    
     "contributions": [
         {
             "id": "sharepoint-addin-build",
