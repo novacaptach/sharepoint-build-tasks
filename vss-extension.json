@@ -61,6 +61,15 @@
         }
     ],
     "links": {
+        "home": {
+            "uri": "http://ioz.ch"
+        },
+        "getstarted": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks/wiki"
+        },
+        "learn": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks/wiki"
+        },
         "issues": {
             "uri": "https://github.com/iozag/sharepoint-build-tasks/issues"
         },
