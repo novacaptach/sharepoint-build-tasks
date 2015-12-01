@@ -1,4 +1,4 @@
-# sharepoint-build-tasks
+# SharePoint Build Tasks for Team Foundation Build 2015
 Build task for building SharePoint Add-Ins and Solutions with [Team Foundation Build 2015](http://go.microsoft.com/fwlink/?LinkId=619385).
 
 ## Installation
