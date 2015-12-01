@@ -7,10 +7,8 @@ install:
   - npm install
   - npm install -g gulp
 
-before_build:
-  - ps: gitversion /l console /output buildserver
-
 test_script:
+  - ps: gitversion /l console /output buildserver
   - gulp
 
 build: off
