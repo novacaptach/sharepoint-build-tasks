@@ -1,5 +1,5 @@
 # sharepoint-build-tasks
-Build task for building SharePoint Add-Ins and Solutions with TFS Build 2015 (vNext)
+Build task for building SharePoint Add-Ins and Solutions with [Team Foundation Build 2015](http://go.microsoft.com/fwlink/?LinkId=619385).
 
 ## Installation
 * Make sure to have [node.js](https://nodejs.org/) installed.
