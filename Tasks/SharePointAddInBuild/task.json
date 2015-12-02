@@ -28,19 +28,19 @@
     ],
     "inputs": [
         {
-            "name": "project",
+            "name": "solution",
             "type": "filePath",
-            "label": "Add-In Project",
-            "defaultValue": "**\\*.csproj",
+            "label": "Solution",
+            "defaultValue": "**\\*.sln",
             "required": true,
-            "helpMarkDown": "Relative path from repo root of the SharePoint Add-In projects to run.  Wildcards can be used.  For example, `**\\*.csproj` for all project files in all sub folders."
+            "helpMarkDown": "Relative path from repo root of the solution or SharePoint Add-In  project to build.  Wildcards can be used.  For example, `**\\*.sln` for all solution files in all sub folders or `**\\*.csproj` for all project files in all sub folders."
         },
         {
             "name": "publishProfile",
             "type": "string",
             "label": "Publish Profile",
             "defaultValue": "",
-            "required": true,
+            "required": false,
             "helpMarkDown": "Publish profile which should be used to build the Add-In."
         },
         {
