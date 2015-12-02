@@ -1,0 +1,89 @@
+{
+    "manifestVersion": 1,
+    "id": "sharepoint-build-tasks",
+    "name": "SharePoint Build Tools",
+    "version": "0.0.3",
+    "publisher": "ioz",
+    "public": false,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for building SharePoint Add-Ins.",
+    "categories": [
+        "Build and release"
+    ],
+    "icons": {
+        "default": "extension-icon.png"        
+    },
+    "files": [
+        {
+            "path": "_build/Tasks/SharePointAddInBuild"
+        },
+        {
+            "path": "_build/Tasks/SharePointAddInVersioning"
+        },
+        {
+            "path": "_build/Tasks/SharePointAddInPatching"
+        }
+    ],
+    "content": {
+        "details":
+        {
+            "path": "extension-details.md"
+        }
+    },    
+    "contributions": [
+        {
+            "id": "sharepoint-addin-build",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "_build/Tasks/SharePointAddInBuild"
+            }
+        },
+        {
+            "id": "sharepoint-addin-versioning",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "_build/Tasks/SharePointAddInVersioning"
+            }
+        },
+        {
+            "id": "sharepoint-addin-patching",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "_build/Tasks/SharePointAddInPatching"
+            }
+        }
+    ],
+    "links": {
+        "home": {
+            "uri": "http://ioz.ch"
+        },
+        "getstarted": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks/wiki"
+        },
+        "learn": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks/wiki"
+        },
+        "issues": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks/issues"
+        },
+        "license": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks/blob/master/LICENSE"
+        },
+        "repository": {
+            "uri": "https://github.com/iozag/sharepoint-build-tasks"
+        }
+    }
+}
