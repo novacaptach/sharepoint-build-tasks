@@ -9,6 +9,20 @@ install:
 
 test_script:
   - ps: gitversion /l console /output buildserver
-  - gulp
 
+  - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\SharePointAddInBuild\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
+  - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\SharePointAddInPatching\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
+  - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\SharePointAddInVersioning\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
+
+  - gulp
+  
+  - cmd: 7z a "SharePointAddInBuild_%GitVersion_NuGetVersion%.zip" -r .\_build\Tasks\SharePointAddInBuild\*.*
+  - cmd: appveyor PushArtifact "SharePointAddInBuild_%GitVersion_NuGetVersion%.zip"
+  
+  - cmd: 7z a "SharePointAddInPatching_%GitVersion_NuGetVersion%.zip" -r .\_build\Tasks\SharePointAddInPatching\*.*
+  - cmd: appveyor PushArtifact "SharePointAddInPatching_%GitVersion_NuGetVersion%.zip"
+  
+  - cmd: 7z a "SharePointAddInVersioning_%GitVersion_NuGetVersion%.zip" -r .\_build\Tasks\SharePointAddInVersioning\*.*
+  - cmd: appveyor PushArtifact "SharePointAddInVersioning_%GitVersion_NuGetVersion%.zip"
+  
 build: off
