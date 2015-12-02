@@ -128,10 +128,12 @@ Write-Verbose "msBuildLocation = $msBuildLocation"
 # Append additional information to the MSBuild args.
 $args = $msBuildArgs;
 
+$args = ('{0} /p:IsPackaging=true' -f $args)
+
 if ([string]::IsNullOrEmpty($publishProfile) -ne $true)
 {
     Write-Verbose ('Adding PublishProfile: {0}' -f $publishProfile)
-    $args = ('{0} /p:ActivePublishProfile="{1}\\"' -f $args, $publishProfile)
+    $args = ('{0} /p:ActivePublishProfile="{1}"' -f $args, $publishProfile)
 }
 
 if ([string]::IsNullOrEmpty($publishDir) -ne $true)
