@@ -13,4 +13,4 @@ $task.version.Minor = $minor
 $task.version.Patch = $patch
 
 # Write changes back to file.
-ConvertTo-Json $task | Set-Content -Path $filePath
+ConvertTo-Json $task -Depth 999 | Set-Content -Path $filePath

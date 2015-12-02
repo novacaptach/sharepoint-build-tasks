@@ -9,4 +9,4 @@ $extension = Get-Content -Raw -Path $filePath | ConvertFrom-Json
 $extension.version = $version
 
 # Write changes back to file.
-ConvertTo-Json $extension | Set-Content -Path $filePath
+ConvertTo-Json $extension -Depth 999 | Set-Content -Path $filePath
