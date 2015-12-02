@@ -1,5 +1,5 @@
 param(
-    [string]$project, 
+    [string]$solution, 
     [string]$publishProfile, 
     [string]$publishDir, 	
     [string]$clean,
@@ -10,9 +10,9 @@ param(
 )
 
 Write-Verbose "Entering script SharePointAddInBuild.ps1"
+Write-Verbose "solution = $solution"
 Write-Verbose "publishProfile = $publishProfile"
 Write-Verbose "publishDir = $publishDir"
-Write-Verbose "project = $project"
 Write-Verbose "clean = $clean"
 Write-Verbose "vsVersion = $vsVersion"
 Write-Verbose "msBuildArgs = $msBuildArgs"
@@ -23,14 +23,9 @@ Write-Verbose "logProjectEvents = $logProjectEvents"
 import-module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
 import-module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
 
-if (!$project)
+if (!$solution)
 {
-    throw (Get-LocalizedString -Key "Project parameter not set on script")
-}
-
-if (!$publishProfile)
-{
-    throw (Get-LocalizedString -Key "Publish profile parameter not set on script")
+    throw (Get-LocalizedString -Key "solution parameter not set on script")
 }
 
 $logEvents = Convert-String $logProjectEvents Boolean
@@ -40,23 +35,23 @@ Write-Verbose "noTimelineLogger = $noTimelineLogger"
 $cleanBuild = Convert-String $clean Boolean
 Write-Verbose "clean (converted) = $cleanBuild"
 
-# check for project pattern
-if ($project.Contains("*") -or $project.Contains("?"))
+# check for solution pattern
+if ($solution.Contains("*") -or $solution.Contains("?"))
 {
-    Write-Verbose "Pattern found in project parameter."
-    Write-Verbose "Find-Files -SearchPattern $project"
-    $projectFiles = Find-Files -SearchPattern $project
-    Write-Verbose "projectFiles = $projectFiles"
+    Write-Verbose "Pattern found in solution parameter."
+    Write-Verbose "Find-Files -SearchPattern $solution"
+    $solutionFiles = Find-Files -SearchPattern $solution
+    Write-Verbose "solutionFiles = $solutionFiles"
 }
 else
 {
-    Write-Verbose "No Pattern found in project parameter."
-    $projectFiles = ,$project
+    Write-Verbose "No Pattern found in solution parameter."
+    $solutionFiles = ,$solution
 }
 
-if (!$projectFiles)
+if (!$solutionFiles)
 {
-    throw (Get-LocalizedString -Key "No solution was found using search pattern '{0}'." -ArgumentList $project)
+    throw (Get-LocalizedString -Key "No solution was found using search pattern '{0}'." -ArgumentList $solution)
 }
 
 # Look for a specific version of Visual Studio.
@@ -133,17 +128,21 @@ Write-Verbose "msBuildLocation = $msBuildLocation"
 # Append additional information to the MSBuild args.
 $args = $msBuildArgs;
 
-$args = ('{0} /p:IsPackaging=true /p:ActivePublishProfile="{1}"' -f $args, $publishProfile)
+if ([string]::IsNullOrEmpty($publishProfile) -ne $true)
+{
+    Write-Verbose ('Adding PublishProfile: {0}' -f $publishProfile)
+    $args = ('{0} /p:ActivePublishProfile="{1}\\"' -f $args, $publishProfile)
+}
 
 if ([string]::IsNullOrEmpty($publishDir) -ne $true)
 {
-    Write-Verbose ('adding PublishDir: {0}' -f $publishDir)
+    Write-Verbose ('Adding PublishDir: {0}' -f $publishDir)
     $args = ('{0} /p:PublishDir="{1}\\"' -f $args, $publishDir.Trimend('\\'))
 }
 
 if ($vsLocation)
 {
-    Write-Verbose ('adding VisualStudioVersion: {0}' -f $vsVersion)
+    Write-Verbose ('Adding VisualStudioVersion: {0}' -f $vsVersion)
     $args = ('{0} /p:VisualStudioVersion="{1}"' -f $args, $vsVersion)
 }
 
@@ -151,13 +150,13 @@ Write-Verbose "args = $args"
 
 if ($cleanBuild)
 {
-    foreach ($pf in $projectFiles)  
+    foreach ($pf in $solutionFiles)  
     {
         Invoke-MSBuild $pf -Targets Clean -LogFile "$pf-clean.log" -ToolLocation $msBuildLocation -CommandLineArgs $args -NoTimelineLogger:$noTimelineLogger
     }
 }
 
-foreach ($pf in $projectFiles)
+foreach ($pf in $solutionFiles)
 {
     Invoke-MSBuild $pf -LogFile "$pf.log" -ToolLocation $msBuildLocation -CommandLineArgs $args  -NoTimelineLogger:$noTimelineLogger
 }
