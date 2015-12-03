@@ -33,7 +33,21 @@
             "label": "Solution",
             "defaultValue": "**\\*.sln",
             "required": true,
-            "helpMarkDown": "Relative path from repo root of the solution or SharePoint Add-In  project to build.  Wildcards can be used.  For example, `**\\*.sln` for all solution files in all sub folders or `**\\*.csproj` for all project files in all sub folders."
+            "helpMarkDown": "Relative path from repo root of the solution or SharePoint Add-In project to build.  Wildcards can be used.  For example, `**\\*.sln` for all solution files in all sub folders or `**\\*.csproj` for all project files in all sub folders."
+        },
+        {
+            "name": "platform",
+            "type": "string",
+            "label": "Platform",
+            "defaultValue": "",
+            "required": false
+        },
+        {
+            "name": "configuration",
+            "type": "string",
+            "label": "Configuration",
+            "defaultValue": "",
+            "required": false
         },
         {
             "name": "publishProfile",
@@ -56,6 +70,13 @@
             "type": "boolean",
             "label": "Clean",
             "defaultValue": "false",
+            "required": false
+        },
+        {
+            "name": "restoreNugetPackages",
+            "type": "boolean",
+            "label": "Restore NuGet Packages",
+            "defaultValue": "true",
             "required": false
         },
         {

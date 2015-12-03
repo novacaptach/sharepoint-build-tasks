@@ -2,10 +2,13 @@ param(
     [string]$solution, 
     [string]$publishProfile, 
     [string]$publishDir, 	
+    [string]$platform,
+    [string]$configuration,
     [string]$clean,
     [string]$vsVersion,
     [string]$msBuildArgs,
     [string]$msBuildArchitecture,
+    [string]$restoreNugetPackages,
     [string]$logProjectEvents
 )
 
@@ -13,10 +16,13 @@ Write-Verbose "Entering script SharePointAddInBuild.ps1"
 Write-Verbose "solution = $solution"
 Write-Verbose "publishProfile = $publishProfile"
 Write-Verbose "publishDir = $publishDir"
+Write-Verbose "platform = $platform"
+Write-Verbose "configuration = $configuration"
 Write-Verbose "clean = $clean"
 Write-Verbose "vsVersion = $vsVersion"
 Write-Verbose "msBuildArgs = $msBuildArgs"
 Write-Verbose "msBuildArchitecture = $msBuildArchitecture"
+Write-Verbose "restoreNugetPackages = $restoreNugetPackages"
 Write-Verbose "logProjectEvents = $logProjectEvents"
 
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
@@ -28,6 +34,9 @@ if (!$solution)
     throw (Get-LocalizedString -Key "solution parameter not set on script")
 }
 
+
+$nugetRestore = Convert-String $restoreNugetPackages Boolean
+Write-Verbose "nugetRestore (converted) = $nugetRestore"
 $logEvents = Convert-String $logProjectEvents Boolean
 Write-Verbose "logEvents (converted) = $logEvents"
 $noTimelineLogger = !$logEvents
@@ -142,6 +151,18 @@ if ([string]::IsNullOrEmpty($publishDir) -ne $true)
     $args = ('{0} /p:PublishDir="{1}\\"' -f $args, $publishDir.Trimend('\\'))
 }
 
+if ($platform)
+{
+    Write-Verbose "adding platform: $platform"
+    $args = "$args /p:platform=`"$platform`""
+}
+
+if ($configuration)
+{
+    Write-Verbose "adding configuration: $configuration"
+    $args = "$args /p:configuration=`"$configuration`""
+}
+
 if ($vsLocation)
 {
     Write-Verbose ('Adding VisualStudioVersion: {0}' -f $vsVersion)
@@ -150,17 +171,32 @@ if ($vsLocation)
 
 Write-Verbose "args = $args"
 
-if ($cleanBuild)
+$nugetPath = Get-ToolPath -Name 'NuGet.exe'
+if (-not $nugetPath -and $nugetRestore)
 {
-    foreach ($pf in $solutionFiles)  
-    {
-        Invoke-MSBuild $pf -Targets Clean -LogFile "$pf-clean.log" -ToolLocation $msBuildLocation -CommandLineArgs $args -NoTimelineLogger:$noTimelineLogger
-    }
+    Write-Warning (Get-LocalizedString -Key "Unable to locate nuget.exe. Package restore will not be performed for the solutions")
 }
 
-foreach ($pf in $solutionFiles)
+foreach ($sf in $solutionFiles)
 {
-    Invoke-MSBuild $pf -LogFile "$pf.log" -ToolLocation $msBuildLocation -CommandLineArgs $args  -NoTimelineLogger:$noTimelineLogger
+    if ($nugetPath -and $nugetRestore)
+    {
+        if ($env:NUGET_EXTENSIONS_PATH)
+        {
+            Write-Host (Get-LocalizedString -Key "Detected NuGet extensions loader path. Environment variable NUGET_EXTENSIONS_PATH is set to: {0}" -ArgumentList $env:NUGET_EXTENSIONS_PATH)
+        }
+
+        $slnFolder = $(Get-ItemProperty -Path $sf -Name 'DirectoryName').DirectoryName
+        Write-Verbose "Running nuget package restore for $slnFolder"
+        Invoke-Tool -Path $nugetPath -Arguments "restore `"$sf`" -NonInteractive" -WorkingFolder $slnFolder
+    }
+    
+    if ($cleanBuild)
+    {
+        Invoke-MSBuild $sf -Targets Clean -LogFile "$sf-clean.log" -ToolLocation $msBuildLocation -CommandLineArgs $args -NoTimelineLogger:$noTimelineLogger
+    }
+
+    Invoke-MSBuild $sf -LogFile "$sf.log" -ToolLocation $msBuildLocation -CommandLineArgs $args  -NoTimelineLogger:$noTimelineLogger
 }
 
 Write-Verbose "Leaving script SharePointAddInBuild.ps1"
