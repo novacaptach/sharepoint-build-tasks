@@ -1,0 +1,15 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "loc.friendlyName": "SharePoint Add-In Patching",
+  "loc.helpMarkDown": "Allows to change the URL and Client ID of SharePoint Add-Ins. [More Information](https://github.com/iozag/sharepoint-build-tasks)",
+  "loc.description": "Set URL and Client ID of a SharePoint Add-In",
+  "loc.instanceNameFormat": "Patch SharePoint Add-In $(AddInFile)",
+  "loc.input.label.AddInFile": "File pattern",
+  "loc.input.help.AddInFile": "Relative path from repo root to the SharePoint AppManifest or Add-In file which should be updated.  Wildcards can be used.  For example `**\\AppManifest.xml` for all AppManifests or `**\\*.app` for all Add-In files in all sub folders.",
+  "loc.input.label.Url": "Url",
+  "loc.input.help.Url": "Url of the website which should be set in the Add-In files.",
+  "loc.input.label.ClientId": "ClientId",
+  "loc.input.help.ClientId": "Client ID which should be set in the Add-In files."
+}
