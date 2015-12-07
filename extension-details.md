@@ -15,7 +15,5 @@ The extension adds the following build tasks to Visual Studio Team Services:
 
   Set URL and Client ID of a SharePoint Add-In.
 
-![SharePoint Build Tasks](Screenshots/sharepoint-build-tasks.png)
-
 ## Documentation
 You can find detailed documentation how to build SharePoint Add-Ins using the tasks from this extension in [our wiki](https://github.com/iozag/sharepoint-build-tasks/wiki).
