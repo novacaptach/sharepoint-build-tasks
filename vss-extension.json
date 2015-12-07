@@ -28,6 +28,11 @@
             "path": "_build/Tasks/SharePointAddInPatching"
         }
     ],
+    "screenshots": [
+        {
+            "path": "Screenshots/sharepoint-build-tasks.png"
+        }
+    ],    
     "content": {
         "details":
         {
