@@ -10,7 +10,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Tools for building SharePoint Add-Ins.",
+    "description": "Tools for building, packaging and deploying SharePoint Add-Ins.",
     "categories": [
         "Build and release"
     ],
@@ -19,7 +19,7 @@
     },
     "files": [
         {
-            "path": "_build/Tasks/SharePointAddInBuild"
+            "path": "_build/Tasks/PackageSharePointAddIn"
         },
         {
             "path": "_build/Tasks/SharePointAddInVersioning"
@@ -41,13 +41,13 @@
     },    
     "contributions": [
         {
-            "id": "sharepoint-addin-build",
+            "id": "package-sharepoint-addin",
             "type": "ms.vss-distributed-task.task",
             "targets": [
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "_build/Tasks/SharePointAddInBuild"
+                "name": "_build/Tasks/PackageSharePointAddIn"
             }
         },
         {
