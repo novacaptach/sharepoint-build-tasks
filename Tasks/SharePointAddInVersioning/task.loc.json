@@ -1,0 +1,49 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "id": "94d9ca89-a3d4-4abb-8b49-2505db9c431a",
+  "name": "SharePointAddInVersioning",
+  "friendlyName": "ms-resource:loc.friendlyName",
+  "description": "ms-resource:loc.description",
+  "helpMarkDown": "ms-resource:loc.helpMarkDown",
+  "category": "Build",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "author": "IOZ AG",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [],
+  "minimumAgentVersion": "1.83.0",
+  "inputs": [
+    {
+      "name": "AddInFile",
+      "type": "filePath",
+      "label": "ms-resource:loc.input.label.AddInFile",
+      "defaultValue": "**\\AppManifest.xml",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.AddInFile"
+    },
+    {
+      "name": "Version",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.Version",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.Version"
+    }
+  ],
+  "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\SharePointAddInVersioning.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}

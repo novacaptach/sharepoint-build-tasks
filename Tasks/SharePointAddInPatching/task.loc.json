@@ -1,0 +1,57 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "id": "1c99a02e-9cd4-48b7-acd9-589376cb874d",
+  "name": "SharePointAddInPatching",
+  "friendlyName": "ms-resource:loc.friendlyName",
+  "description": "ms-resource:loc.description",
+  "helpMarkDown": "ms-resource:loc.helpMarkDown",
+  "category": "Build",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "author": "IOZ AG",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [],
+  "minimumAgentVersion": "1.83.0",
+  "inputs": [
+    {
+      "name": "AddInFile",
+      "type": "filePath",
+      "label": "ms-resource:loc.input.label.AddInFile",
+      "defaultValue": "**\\*.app",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.AddInFile"
+    },
+    {
+      "name": "Url",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.Url",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.Url"
+    },
+    {
+      "name": "ClientId",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.ClientId",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.ClientId"
+    }
+  ],
+  "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\SharePointAddInPatching.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
