@@ -31,19 +31,33 @@
   ],
   "inputs": [
     {
-      "name": "project",
+      "name": "solution",
       "type": "filePath",
-      "label": "ms-resource:loc.input.label.project",
-      "defaultValue": "**\\*.csproj",
+      "label": "ms-resource:loc.input.label.solution",
+      "defaultValue": "**\\*.sln",
       "required": true,
-      "helpMarkDown": "ms-resource:loc.input.help.project"
+      "helpMarkDown": "ms-resource:loc.input.help.solution"
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.platform",
+      "defaultValue": "",
+      "required": false
+    },
+    {
+      "name": "configuration",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.configuration",
+      "defaultValue": "",
+      "required": false
     },
     {
       "name": "publishProfile",
       "type": "string",
       "label": "ms-resource:loc.input.label.publishProfile",
       "defaultValue": "",
-      "required": true,
+      "required": false,
       "helpMarkDown": "ms-resource:loc.input.help.publishProfile"
     },
     {
@@ -59,6 +73,13 @@
       "type": "boolean",
       "label": "ms-resource:loc.input.label.clean",
       "defaultValue": "false",
+      "required": false
+    },
+    {
+      "name": "restoreNugetPackages",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.restoreNugetPackages",
+      "defaultValue": "true",
       "required": false
     },
     {
