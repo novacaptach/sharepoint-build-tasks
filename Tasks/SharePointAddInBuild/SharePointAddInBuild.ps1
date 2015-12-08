@@ -137,8 +137,6 @@ Write-Verbose "msBuildLocation = $msBuildLocation"
 # Append additional information to the MSBuild args.
 $args = $msBuildArgs;
 
-$args = ('{0} /p:IsPackaging=true' -f $args)
-
 if ([string]::IsNullOrEmpty($publishProfile) -ne $true)
 {
     Write-Verbose ('Adding PublishProfile: {0}' -f $publishProfile)
@@ -179,6 +177,17 @@ if (-not $nugetPath -and $nugetRestore)
 
 foreach ($sf in $solutionFiles)
 {
+    if ([System.IO.Path]::GetExtension($sf) -eq ".sln") 
+    {
+        # If file is a solution call it with the IsPackaging property
+        $args = ('{0} /p:IsPackaging=true' -f $args)        
+    }
+    else 
+    {
+        # If file is a project call directly the Package target.
+        $args = ('{0} /t:Package' -f $args)        
+    }
+
     if ($nugetPath -and $nugetRestore)
     {
         if ($env:NUGET_EXTENSIONS_PATH)
