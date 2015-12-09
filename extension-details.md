@@ -3,15 +3,15 @@ This extension contains build tasks that help in building, packaging and deployi
 
 ## How to use
 The extension adds the following build tasks to Visual Studio Team Services:
-* [Package SharePoint Add-In](https://github.com/iozag/sharepoint-build-tasks/blob/master/Tasks/PackageSharePointAddIn)
+* [Package SharePoint Add-In](https://github.com/iozag/sharepoint-build-tasks/blob/master/Tasks/PackageSharePointAddIn/README.md)
 
   Build and package a SharePoint Add-In.
 
-* [SharePoint Add-In Versioning](https://github.com/iozag/sharepoint-build-tasks/blob/master/Tasks/SharePointAddInVersioning)
+* [SharePoint Add-In Versioning](https://github.com/iozag/sharepoint-build-tasks/blob/master/Tasks/SharePointAddInVersioning/README.md)
 
   Set version of a SharePoint Add-In.
 
-* [SharePoint Add-In Patching](https://github.com/iozag/sharepoint-build-tasks/blob/master/Tasks/SharePointAddInPatching)
+* [SharePoint Add-In Patching](https://github.com/iozag/sharepoint-build-tasks/blob/master/Tasks/SharePointAddInPatching/README.md)
 
   Set URL and Client ID of a SharePoint Add-In.
 
