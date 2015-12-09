@@ -7,15 +7,15 @@ Task for building SharePoint Add-Ins and Solutions with [Team Foundation Build 2
 The build tasks can be installed by installing the [SharePoint Build Tools Extension](https://marketplace.visualstudio.com) from the Visual Studio Team Services Marketplace. 
 
 ## Available Tasks
-* [Package SharePoint Add-In](./Tasks/PackageSharePointAddIn)
+* [Package SharePoint Add-In](./Tasks/PackageSharePointAddIn/README.md)
 
   Build and package a SharePoint Add-In.
 
-* [SharePoint Add-In Versioning](./Tasks/SharePointAddInVersioning)
+* [SharePoint Add-In Versioning](./Tasks/SharePointAddInVersioning/README.md)
 
   Set version of a SharePoint Add-In.
 
-* [SharePoint Add-In Patching](./Tasks/SharePointAddInPatching)
+* [SharePoint Add-In Patching](./Tasks/SharePointAddInPatching/README.md)
 
   Set URL and Client ID of a SharePoint Add-In.
     
