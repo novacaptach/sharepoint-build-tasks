@@ -1,8 +1,8 @@
 {
-    "id":"416391dc-a7f5-4be9-be80-824777d72f7a",
-    "name":"SharePointAddInBuild",
-    "friendlyName": "SharePoint Add-In Build",
-    "description": "Build a SharePoint Add-In",
+    "id":"264c5eea-33ff-46f3-98fd-de1819e6dd85",
+    "name":"PackageSharePointAddIn",
+    "friendlyName": "Package SharePoint Add-In",
+    "description": "Build and package a SharePoint Add-In",
     "helpMarkDown": "[More Information](https://github.com/iozag/sharepoint-build-tasks)",
     "category": "Build",
     "visibility": [
@@ -33,7 +33,7 @@
             "label": "Solution",
             "defaultValue": "**\\*.sln",
             "required": true,
-            "helpMarkDown": "Relative path from repo root of the solution or SharePoint Add-In project to build.  Wildcards can be used.  For example, `**\\*.sln` for all solution files in all sub folders or `**\\*.csproj` for all project files in all sub folders."
+            "helpMarkDown": "Relative path from repo root of the solution or SharePoint Add-In project to build and package.  Wildcards can be used.  For example, `**\\*.sln` for all solution files in all sub folders or `**\\*.csproj` for all project files in all sub folders."
         },
         {
             "name": "platform",
@@ -55,7 +55,7 @@
             "label": "Publish Profile",
             "defaultValue": "",
             "required": false,
-            "helpMarkDown": "Publish profile which should be used to build the Add-In."
+            "helpMarkDown": "Publish profile which should be used to package the Add-In."
         },
         {
             "name": "publishDir",
@@ -124,10 +124,10 @@
             "groupName": "advanced"
         }
     ],
-    "instanceNameFormat": "Build SharePoint Add-In $(project)",
+    "instanceNameFormat": "Package SharePoint Add-In $(solution)",
     "execution": {
         "PowerShell": {
-            "target": "$(currentDirectory)\\SharePointAddInBuild.ps1",
+            "target": "$(currentDirectory)\\PackageSharePointAddIn.ps1",
             "argumentFormat": "",
             "workingDirectory": "$(currentDirectory)"
         }

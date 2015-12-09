@@ -12,7 +12,7 @@ param(
     [string]$logProjectEvents
 )
 
-Write-Verbose "Entering script SharePointAddInBuild.ps1"
+Write-Verbose "Entering script PackageSharePointAddIn.ps1"
 Write-Verbose "solution = $solution"
 Write-Verbose "publishProfile = $publishProfile"
 Write-Verbose "publishDir = $publishDir"
@@ -208,4 +208,4 @@ foreach ($sf in $solutionFiles)
     Invoke-MSBuild $sf -LogFile "$sf.log" -ToolLocation $msBuildLocation -CommandLineArgs $args  -NoTimelineLogger:$noTimelineLogger
 }
 
-Write-Verbose "Leaving script SharePointAddInBuild.ps1"
+Write-Verbose "Leaving script PackageSharePointAddIn.ps1"
