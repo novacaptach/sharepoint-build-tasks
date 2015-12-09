@@ -87,5 +87,8 @@
         "repository": {
             "uri": "https://github.com/iozag/sharepoint-build-tasks"
         }
-    }
+    },
+    "branding": {
+        "color": "rgb(234, 98, 18)"
+    }    
 }
