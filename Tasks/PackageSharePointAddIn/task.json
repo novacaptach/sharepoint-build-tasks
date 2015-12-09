@@ -124,7 +124,7 @@
             "groupName": "advanced"
         }
     ],
-    "instanceNameFormat": "Package SharePoint Add-In $(project)",
+    "instanceNameFormat": "Package SharePoint Add-In $(solution)",
     "execution": {
         "PowerShell": {
             "target": "$(currentDirectory)\\PackageSharePointAddIn.ps1",
