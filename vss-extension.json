@@ -4,7 +4,7 @@
     "name": "SharePoint Build Tools",
     "version": "0.0.3",
     "publisher": "ioz",
-    "public": false,
+    "public": true,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
