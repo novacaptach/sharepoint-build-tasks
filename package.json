@@ -24,7 +24,7 @@
   "homepage": "https://github.com/iozag/sharepoint-build-tasks",
   "devDependencies": {
     "del": "^1.1.1",
-    "gulp": "^3.8.11",
+    "gulp": "git://github.com/gulpjs/gulp.git#4.0",
     "gulp-typescript": "2.6.0",
     "gulp-util": "^3.0.4",
     "shelljs": "^0.3.0",
