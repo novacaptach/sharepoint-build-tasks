@@ -2,8 +2,8 @@
 // GENERATED FILE - DO NOT EDIT DIRECTLY
 // *******************************************************
 {
-  "id": "416391dc-a7f5-4be9-be80-824777d72f7a",
-  "name": "SharePointAddInBuild",
+  "id": "264c5eea-33ff-46f3-98fd-de1819e6dd85",
+  "name": "PackageSharePointAddIn",
   "friendlyName": "ms-resource:loc.friendlyName",
   "description": "ms-resource:loc.description",
   "helpMarkDown": "ms-resource:loc.helpMarkDown",
@@ -130,7 +130,7 @@
   "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
   "execution": {
     "PowerShell": {
-      "target": "$(currentDirectory)\\SharePointAddInBuild.ps1",
+      "target": "$(currentDirectory)\\PackageSharePointAddIn.ps1",
       "argumentFormat": "",
       "workingDirectory": "$(currentDirectory)"
     }
