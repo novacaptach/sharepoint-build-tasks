@@ -101,48 +101,71 @@ foreach ($af in $addInFiles)
         # Unpack Add-In
         Add-Type -assembly  System.IO.Compression.FileSystem
         $zip =  [System.IO.Compression.ZipFile]::Open($af, "Update")
-
-        # Modify manifest
-        Write-Verbose "Patch AppManifest.xml in $af."
-        $appManifestEntry = $zip.Entries.Where({$_.name -eq "AppManifest.xml"})
-        $appManifestStream = $appManifestEntry.Open()
-        $xmlDoc.Load($appManifestStream)
-        UpdateManifest -AppManifest $xmlDoc -Url $Url -ClientId $ClientId
-                 
-        # Save modifications back
-        $appManifestStream.SetLength(0)
-        $xmlDoc.Save($appManifestStream)
-        
-        # Repack Add-In
-        $appManifestStream.Flush()
-        $appManifestStream.Close()
-        
-        # Process elements
-        Write-Verbose "Looking for elements files in $af."
-        $elementsEntries = $zip.Entries.Where({$_.name.StartsWith("elements")})
-        foreach ($elementEntry in $elementsEntries)
+        try
         {
-            Write-Verbose "Patch $elementEntry in $af."
+            # Modify manifest
+            Write-Verbose "Patch AppManifest.xml in $af."
+            $appManifestEntry = $zip.Entries.Where({$_.name -eq "AppManifest.xml"})
+            $appManifestStream = $appManifestEntry.Open()
+            $xmlDoc.Load($appManifestStream)
+            UpdateManifest -AppManifest $xmlDoc -Url $Url -ClientId $ClientId
+                 
+            # Save modifications back
+            $appManifestStream.SetLength(0)
+            $xmlDoc.Save($appManifestStream)
+        
+            # Repack Add-In
+            $appManifestStream.Flush()
+            $appManifestStream.Close()
+        
+            # Process elements
+            Write-Verbose "Looking for elements files in $af."
+            $elementsEntries = $zip.Entries.Where({$_.name.StartsWith("elements")})
+            foreach ($elementEntry in $elementsEntries)
+            {
+                Write-Verbose "Patch $elementEntry in $af."
             
-            # Read content
-            $elementEntryStream = $elementEntry.Open()            
-            $elementEntryReader = [System.IO.StreamReader](elementEntryStream)
-            $elementEntryContent = $elementEntryReader.ReadToEnd()
-            $elementEntryReader.Close()
-            $elementEntryReader.Dispose()
+                $elementEntryStream = $elementEntry.Open()
+                try
+                {
+                    # Read content
+                    $elementEntryReader = [System.IO.StreamReader]($elementEntryStream)
+                    try
+                    {
+                        $elementEntryContent = $elementEntryReader.ReadToEnd()                
+                    }
+                    finally
+                    {
+                        $elementEntryReader.Dispose()                
+                    }     
             
-            # Modify content
-            $elementEntryContent = $elementEntryContent -replace '~remoteAppUrl', $Url
+                    # Modify content
+                    $elementEntryContent = $elementEntryContent -replace '~remoteAppUrl', $Url
             
-            # Write content back
-            $elementEntryWriter = [System.IO.StreamWriter](elementEntryStream)
-            $elementEntryWriter.BaseStream.SetLength(0)
-            $elementEntryWriter.Write($elementEntryContent)
-            $elementEntryStream.Flush()
-            $elementEntryStream.Close()            
+                    # Write content back
+                    $elementEntryWriter = [System.IO.StreamWriter]($elementEntryStream)
+                    try
+                    {
+                        $elementEntryWriter.BaseStream.SetLength(0)
+                        $elementEntryWriter.Write($elementEntryContent)
+                    }
+                    finally
+                    {
+                        $elementEntryWriter.Dispose()                
+                    }                
+                
+                    $elementEntryStream.Flush()
+                }
+                finally
+                {
+                    $elementEntryStream.Dispose()                                            
+                }
+            }            
         }
-
-        $zip.Dispose()
+        finally
+        {
+            $zip.Dispose()            
+        }
     }
     else 
     {
