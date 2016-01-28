@@ -125,36 +125,44 @@ foreach ($af in $addInFiles)
             {
                 Write-Verbose "Patch $elementEntry in $af."
             
+                # Read content
                 $elementEntryStream = $elementEntry.Open()
                 try
                 {
-                    # Read content
                     $elementEntryReader = [System.IO.StreamReader]($elementEntryStream)
                     try
                     {
-                        $elementEntryContent = $elementEntryReader.ReadToEnd()                
+                        $elementEntryContent = $elementEntryReader.ReadToEnd()
                     }
                     finally
                     {
                         $elementEntryReader.Dispose()                
                     }     
+                }
+                finally
+                {
+                    $elementEntryStream.Dispose()                                            
+                }
             
-                    # Modify content
-                    $elementEntryContent = $elementEntryContent -replace '~remoteAppUrl', $Url
+                # Modify content
+                $elementEntryContent = $elementEntryContent -replace '~remoteAppUrl', $Url
             
-                    # Write content back
+                # Write content back
+                $elementEntryStream = $elementEntry.Open()
+                try
+                {
                     $elementEntryWriter = [System.IO.StreamWriter]($elementEntryStream)
                     try
                     {
                         $elementEntryWriter.BaseStream.SetLength(0)
                         $elementEntryWriter.Write($elementEntryContent)
+                        
+                        $elementEntryStream.Flush()
                     }
                     finally
                     {
                         $elementEntryWriter.Dispose()                
-                    }                
-                
-                    $elementEntryStream.Flush()
+                    }                                
                 }
                 finally
                 {
