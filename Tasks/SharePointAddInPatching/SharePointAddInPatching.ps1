@@ -175,4 +175,4 @@ foreach ($af in $addInFiles)
     Write-Verbose "Finished processing $af."
 }
 
-Write-Verbose "Leaving script SharePointAddInVersioning.ps1"
+Write-Verbose "Leaving script SharePointAddInPatching.ps1"
