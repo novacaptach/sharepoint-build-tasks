@@ -119,8 +119,8 @@ foreach ($af in $addInFiles)
         
         # Process elements
         Write-Verbose "Looking for elements files in $af."
-        $elementsEntries = $zip.Entries.Where({$_.name.StartsWith("element")})
-        foreach ($elementEntry in $elementEntries)
+        $elementsEntries = $zip.Entries.Where({$_.name.StartsWith("elements")})
+        foreach ($elementEntry in $elementsEntries)
         {
             Write-Verbose "Patch $elementEntry in $af."
             
