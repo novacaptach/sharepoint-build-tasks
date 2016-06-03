@@ -17,7 +17,7 @@ gulp.task('clean', function (cb) {
 	del([_buildRoot, _pkgRoot, _wkRoot, _oldPkg],cb);
 });
 
-gulp.task('compile', function (cb) {
+gulp.task('compile', ['clean'], function (cb) {
 	var tasksPath = path.join(__dirname, 'Tasks', '**/*.ts');
 	var tsResult = gulp.src([tasksPath, 'definitions/*.d.ts'])
 		.pipe(ts({
@@ -29,13 +29,13 @@ gulp.task('compile', function (cb) {
 	return tsResult.js.pipe(gulp.dest(path.join(__dirname, 'Tasks')));
 });
 
-gulp.task('build', gulp.series(['clean', 'compile'], function () {
+gulp.task('build', ['compile'], function () {
 	shell.mkdir('-p', _tasksRoot);
 	return gulp.src(path.join(__dirname, 'Tasks', '**/task.json'))
         .pipe(pkgm.PackageTask(_tasksRoot));
-}));
+});
 
-gulp.task('package', gulp.series(['build'], function(cb) {
+gulp.task('package', ['build'], function(cb) {
 	shell.mkdir('-p', _extensionsRoot);
 	var common = require('tfx-cli/_build/app/lib/common');
     var command = tfx_extension_create.getCommand([
@@ -49,6 +49,6 @@ gulp.task('package', gulp.series(['build'], function(cb) {
       console.error('Unable to create extension package because ', reason);
       cb(reason);
     });
-}));
+});
 
-gulp.task('default', gulp.series(['build']));
+gulp.task('default', ['build']);
