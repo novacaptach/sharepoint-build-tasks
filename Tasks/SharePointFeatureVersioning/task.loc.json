@@ -1,0 +1,49 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "id": "dcf5ec15-f53c-421b-9698-8586d62e3cc3",
+  "name": "SharePointFeatureVersioning",
+  "friendlyName": "ms-resource:loc.friendlyName",
+  "description": "ms-resource:loc.description",
+  "helpMarkDown": "ms-resource:loc.helpMarkDown",
+  "category": "Build",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "author": "IOZ AG",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "demands": [],
+  "minimumAgentVersion": "1.83.0",
+  "inputs": [
+    {
+      "name": "FeatureFile",
+      "type": "filePath",
+      "label": "ms-resource:loc.input.label.FeatureFile",
+      "defaultValue": "**\\*.feature",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.FeatureFile"
+    },
+    {
+      "name": "Version",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.Version",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "ms-resource:loc.input.help.Version"
+    }
+  ],
+  "instanceNameFormat": "ms-resource:loc.instanceNameFormat",
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\SharePointFeatureVersioning.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
