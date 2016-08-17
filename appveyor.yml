@@ -13,6 +13,7 @@ test_script:
   - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\PackageSharePointAddIn\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
   - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\SharePointAddInPatching\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
   - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\SharePointAddInVersioning\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
+  - ps: .\Deployment\Update-TaskVersion.ps1 .\Tasks\SharePointFeatureVersioning\task.json $env:GitVersion_Major $env:GitVersion_Minor $env:GitVersion_Patch
   - ps: .\Deployment\Update-ExtensionVersion.ps1 .\vss-extension.json $env:GitVersion_MajorMinorPatch
 
   - gulp package
@@ -25,6 +26,9 @@ test_script:
   
   - cmd: 7z a "SharePointAddInVersioning_%GitVersion_NuGetVersion%.zip" -r .\_build\Tasks\SharePointAddInVersioning\*.*
   - cmd: appveyor PushArtifact "SharePointAddInVersioning_%GitVersion_NuGetVersion%.zip"
+  
+  - cmd: 7z a "SharePointFeatureVersioning_%GitVersion_NuGetVersion%.zip" -r .\_build\Tasks\SharePointFeatureVersioning\*.*
+  - cmd: appveyor PushArtifact "SharePointFeatureVersioning_%GitVersion_NuGetVersion%.zip"
   
   - cmd: appveyor PushArtifact ".\_build\Extensions\ioz.sharepoint-build-tasks-%GitVersion_MajorMinorPatch%.vsix"
   

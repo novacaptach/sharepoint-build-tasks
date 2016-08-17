@@ -19,5 +19,9 @@ The build tasks can be installed by installing the [SharePoint Build Tools Exten
 
   Set URL and Client ID of a SharePoint Add-In.
     
+* [SharePoint Feature Versioning](./Tasks/SharePointFeatureVersioning/README.md)
+
+  Set version of a SharePoint feature.
+
 ## Usage
 See the [Wiki](https://github.com/iozag/sharepoint-build-tasks/wiki) for documentation.

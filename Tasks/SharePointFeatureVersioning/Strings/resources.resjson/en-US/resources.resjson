@@ -1,0 +1,13 @@
+// *******************************************************
+// GENERATED FILE - DO NOT EDIT DIRECTLY
+// *******************************************************
+{
+  "loc.friendlyName": "SharePoint Feature Versioning",
+  "loc.helpMarkDown": "Allows to change the version of SharePoint features. Supports changing the version before compile time in .feature files. [More Information](https://github.com/iozag/sharepoint-build-tasks)",
+  "loc.description": "Set version of a SharePoint feature",
+  "loc.instanceNameFormat": "Set version of SharePoint feature $(FeatureFile)",
+  "loc.input.label.FeatureFile": "File pattern",
+  "loc.input.help.FeatureFile": "Relative path from repo root to the SharePoint feature file which should be updated. Wildcards can be used. For example `**\\*.feature` for all feature files in all sub folders.",
+  "loc.input.label.Version": "Version",
+  "loc.input.help.Version": "Version which should be set in the feature."
+}

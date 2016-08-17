@@ -26,6 +26,9 @@
         },
         {
             "path": "_build/Tasks/SharePointAddInPatching"
+        },
+        {
+            "path": "_build/Tasks/SharePointFeatureVersioning"
         }
     ],
     "screenshots": [
@@ -68,6 +71,16 @@
             ],
             "properties": {
                 "name": "_build/Tasks/SharePointAddInPatching"
+            }
+        },
+        {
+            "id": "sharepoint-feature-versioning",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "_build/Tasks/SharePointFeatureVersioning"
             }
         }
     ],
