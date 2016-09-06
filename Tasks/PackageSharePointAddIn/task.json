@@ -21,6 +21,11 @@
     "minimumAgentVersion": "1.83.0",
     "groups": [
         {
+            "name": "publishing",
+            "displayName": "Publishing",
+            "isExpanded": true
+        },
+        {
             "name": "advanced",
             "displayName": "Advanced",
             "isExpanded": false
@@ -50,22 +55,6 @@
             "required": false
         },
         {
-            "name": "publishProfile",
-            "type": "string",
-            "label": "Publish Profile",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Publish profile which should be used to package the Add-In."
-        },
-        {
-            "name": "publishDir",
-            "type": "string",
-            "label": "Publish Directory",
-            "defaultValue": "",
-            "required": false,
-            "helpMarkDown": "Path into which the SharePoint Add-In should be deployed. Relative to the path of the SharePoint Add-In project."
-        },
-        {
             "name": "clean",
             "type": "boolean",
             "label": "Clean",
@@ -93,6 +82,34 @@
                 "11.0": "Visual Studio 2012"
             }
         },
+        {
+            "name": "usePublishProfile",
+            "type": "boolean",
+            "label": "Use publish profile",
+            "defaultValue": true,
+            "required": false,
+            "helpMarkDown": "Activate if the Add-In should be build using a certain publish profile. If not set, the Add-In will be built using no publish profile, even if one is set in the project source.",
+            "groupName": "publishing"
+        },        
+        {
+            "name": "publishProfile",
+            "type": "string",
+            "label": "Publish Profile",
+            "defaultValue": "",
+            "required": false,
+            "visibleRule": "usePublishProfile = true",
+            "helpMarkDown": "Publish profile which should be used to package the Add-In.",
+            "groupName": "publishing"
+        },
+        {
+            "name": "publishDir",
+            "type": "string",
+            "label": "Publish Directory",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Path into which the SharePoint Add-In should be deployed. Relative to the path of the SharePoint Add-In project.",
+            "groupName": "publishing"
+        },        
         {
             "name": "msbuildArgs",
             "type": "string",

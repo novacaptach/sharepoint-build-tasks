@@ -24,6 +24,11 @@
   "minimumAgentVersion": "1.83.0",
   "groups": [
     {
+      "name": "publishing",
+      "displayName": "ms-resource:loc.group.displayName.publishing",
+      "isExpanded": true
+    },
+    {
       "name": "advanced",
       "displayName": "ms-resource:loc.group.displayName.advanced",
       "isExpanded": false
@@ -53,22 +58,6 @@
       "required": false
     },
     {
-      "name": "publishProfile",
-      "type": "string",
-      "label": "ms-resource:loc.input.label.publishProfile",
-      "defaultValue": "",
-      "required": false,
-      "helpMarkDown": "ms-resource:loc.input.help.publishProfile"
-    },
-    {
-      "name": "publishDir",
-      "type": "string",
-      "label": "ms-resource:loc.input.label.publishDir",
-      "defaultValue": "",
-      "required": false,
-      "helpMarkDown": "ms-resource:loc.input.help.publishDir"
-    },
-    {
       "name": "clean",
       "type": "boolean",
       "label": "ms-resource:loc.input.label.clean",
@@ -95,6 +84,34 @@
         "12.0": "Visual Studio 2013",
         "11.0": "Visual Studio 2012"
       }
+    },
+    {
+      "name": "usePublishProfile",
+      "type": "boolean",
+      "label": "ms-resource:loc.input.label.usePublishProfile",
+      "defaultValue": true,
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.usePublishProfile",
+      "groupName": "publishing"
+    },
+    {
+      "name": "publishProfile",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.publishProfile",
+      "defaultValue": "",
+      "required": false,
+      "visibleRule": "usePublishProfile = true",
+      "helpMarkDown": "ms-resource:loc.input.help.publishProfile",
+      "groupName": "publishing"
+    },
+    {
+      "name": "publishDir",
+      "type": "string",
+      "label": "ms-resource:loc.input.label.publishDir",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "ms-resource:loc.input.help.publishDir",
+      "groupName": "publishing"
     },
     {
       "name": "msbuildArgs",
