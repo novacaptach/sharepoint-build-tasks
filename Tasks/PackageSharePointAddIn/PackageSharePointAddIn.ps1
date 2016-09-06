@@ -1,5 +1,6 @@
 param(
     [string]$solution, 
+    [string]$usePublishProfile,
     [string]$publishProfile, 
     [string]$publishDir, 	
     [string]$platform,
@@ -14,6 +15,7 @@ param(
 
 Write-Verbose "Entering script PackageSharePointAddIn.ps1"
 Write-Verbose "solution = $solution"
+Write-Verbose "usePublishProfile = $usePublishProfile"
 Write-Verbose "publishProfile = $publishProfile"
 Write-Verbose "publishDir = $publishDir"
 Write-Verbose "platform = $platform"
@@ -35,6 +37,8 @@ if (!$solution)
 }
 
 
+$usePublishProfileFlag = Convert-String $usePublishProfile Boolean
+Write-Verbose "usePublishProfile (converted) = $usePublishProfileFlag"
 $nugetRestore = Convert-String $restoreNugetPackages Boolean
 Write-Verbose "nugetRestore (converted) = $nugetRestore"
 $logEvents = Convert-String $logProjectEvents Boolean
@@ -137,7 +141,12 @@ Write-Verbose "msBuildLocation = $msBuildLocation"
 # Append additional information to the MSBuild args.
 $args = $msBuildArgs;
 
-if ([string]::IsNullOrEmpty($publishProfile) -ne $true)
+if (!$usePublishProfileFlag)
+{
+    Write-Verbose ('Clear PublishProfile')
+    $args = ('{0} /p:ActivePublishProfile=""' -f $args)
+}
+elseif ([string]::IsNullOrEmpty($publishProfile) -ne $true)
 {
     Write-Verbose ('Adding PublishProfile: {0}' -f $publishProfile)
     $args = ('{0} /p:ActivePublishProfile="{1}"' -f $args, $publishProfile)
