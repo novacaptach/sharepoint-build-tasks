@@ -4,7 +4,7 @@ var del = require('del');
 var shell = require('shelljs')
 var pkgm = require('./package');
 var ts = require('gulp-typescript');
-var tfx_extension_create = require('tfx-cli/_build/app/exec/extension/create');
+var tfx_extension_create = require('tfx-cli/_build/exec/extension/create');
 
 var _buildRoot = path.join(__dirname, '_build');
 var _tasksRoot = path.join(_buildRoot, 'Tasks');
@@ -37,7 +37,7 @@ gulp.task('build', ['compile'], function () {
 
 gulp.task('package', ['build'], function(cb) {
 	shell.mkdir('-p', _extensionsRoot);
-	var common = require('tfx-cli/_build/app/lib/common');
+	var common = require('tfx-cli/_build/lib/common');
     var command = tfx_extension_create.getCommand([
       '--output-path', _extensionsRoot
     ]);
