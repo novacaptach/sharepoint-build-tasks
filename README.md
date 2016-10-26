@@ -24,4 +24,4 @@ The build tasks can be installed by installing the [SharePoint Build Tools Exten
   Set version of a SharePoint feature.
 
 ## Usage
-See the [Wiki](https://github.com/iozag/sharepoint-build-tasks/wiki) for documentation.
+See the [Wiki](https://github.com/argusnetch/sharepoint-build-tasks/wiki) for documentation.
