@@ -86,19 +86,19 @@
     ],
     "links": {
         "home": {
-            "uri": "http://ioz.ch"
+            "uri": "http://argusnet.ch"
         },
         "getstarted": {
-            "uri": "https://github.com/iozag/sharepoint-build-tasks/wiki"
+            "uri": "https://github.com/argusnetch/sharepoint-build-tasks/wiki"
         },
         "issues": {
-            "uri": "https://github.com/iozag/sharepoint-build-tasks/issues"
+            "uri": "https://github.com/argusnetch/sharepoint-build-tasks/issues"
         },
         "license": {
-            "uri": "https://github.com/iozag/sharepoint-build-tasks/blob/master/LICENSE"
+            "uri": "https://github.com/argusnetch/sharepoint-build-tasks/blob/master/LICENSE"
         },
         "repository": {
-            "uri": "https://github.com/iozag/sharepoint-build-tasks"
+            "uri": "https://github.com/argusnetch/sharepoint-build-tasks"
         }
     }    
 }
