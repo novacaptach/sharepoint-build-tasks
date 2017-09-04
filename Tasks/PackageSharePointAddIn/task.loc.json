@@ -80,6 +80,7 @@
       "defaultValue": "14.0",
       "options": {
         "latest": "Latest",
+        "15.0": "Visual Studio 2017",
         "14.0": "Visual Studio 2015",
         "12.0": "Visual Studio 2013",
         "11.0": "Visual Studio 2012"
