@@ -77,7 +77,7 @@
       "label": "ms-resource:loc.input.label.vsVersion",
       "required": false,
       "helpMarkDown": "ms-resource:loc.input.help.vsVersion",
-      "defaultValue": "14.0",
+      "defaultValue": "15.0",
       "options": {
         "latest": "Latest",
         "15.0": "Visual Studio 2017",

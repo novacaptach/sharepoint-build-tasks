@@ -117,6 +117,7 @@ if ($vsLocation)
 {
     switch ($vsVersion)
     {
+        '15.0' { $msBuildVersion = '15.0' }
         '14.0' { $msBuildVersion = '14.0' }
         '12.0' { $msBuildVersion = '12.0' }
         '11.0' { $msBuildVersion = '4.0' }
