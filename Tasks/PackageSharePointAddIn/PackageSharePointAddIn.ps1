@@ -85,7 +85,7 @@ if ($vsVersion -and "$vsVersion".ToUpperInvariant() -ne 'LATEST')
 if (!$vsLocation)
 {
     Write-Verbose 'Searching for the latest Visual Studio version.'
-    [string[]]$vsVersions = '14.0', '12.0', '11.0', '10.0' | where { $_ -ne $vsVersion }
+    [string[]]$vsVersions = '15.0', '14.0', '12.0', '11.0', '10.0' | where { $_ -ne $vsVersion }
     foreach ($vsVersion in $vsVersions)
     {
         # Look for the specific version.
@@ -117,6 +117,7 @@ if ($vsLocation)
 {
     switch ($vsVersion)
     {
+        '15.0' { $msBuildVersion = '15.0' }
         '14.0' { $msBuildVersion = '14.0' }
         '12.0' { $msBuildVersion = '12.0' }
         '11.0' { $msBuildVersion = '4.0' }
