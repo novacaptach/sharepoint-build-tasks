@@ -131,7 +131,7 @@ Write-Verbose "msBuildVersion = $msBuildVersion"
 
 # Find the MSBuild location.
 Write-Verbose "Finding MSBuild location."
-$msBuildLocation = Get-MSBuildLocation -Version $msBuildVersion -Architecture $msBuildArchitecture
+$msBuildLocation = Get-MSBuildPath $msBuildVersion $msBuildArchitecture
 if (!$msBuildLocation)
 {
     # Not found. Throw.
