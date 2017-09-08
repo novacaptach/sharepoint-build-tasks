@@ -18,3 +18,17 @@ function Get-VSPath($Version) {
     } finally {
     }
 }
+
+function Get-MSBuildPath($msBuildVersion, $msBuildArchitecture) {
+    if ($msBuildVersion -eq "15.0") {
+        $vsPath = Get-VSPath $msBuildVersion
+        if ($msBuildArchitecture -eq "x86") {
+            return "$vsPath\MSBuild\$msBuildVersion\bin"
+        }
+        if ($msBuildArchitecture -eq "x64") {
+            return "$vsPath\MSBuild\$msBuildVersion\bin\amd64"
+        }
+    } else {
+        Get-MSBuildLocation -Version $msBuildVersion -Architecture $msBuildArchitecture
+    }
+}
