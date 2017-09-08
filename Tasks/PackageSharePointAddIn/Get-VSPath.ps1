@@ -5,7 +5,7 @@ function Get-VSPath($Version) {
         if ($Version -eq "15.0") {
             # Use vswhere.exe to determine the Visual Studio Path.
             $homeDirectory = $env:AGENT_HOMEDIRECTORY
-            $combinedVsWhereDirectory = Join-Path $homeDirectory "vswhere\vswhere.exe"
+            $combinedVsWhereDirectory = Join-Path $homeDirectory "externals\vswhere\vswhere.exe"
             $output = [string](& $combinedVsWhereDirectory -format json)
             $vs15Object = (ConvertFrom-Json -InputObject $output.ToString()) | Select-Object -First 1
             return $vs15Object.installationPath
