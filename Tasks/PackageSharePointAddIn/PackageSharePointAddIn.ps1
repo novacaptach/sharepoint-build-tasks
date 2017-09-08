@@ -30,6 +30,7 @@ Write-Verbose "logProjectEvents = $logProjectEvents"
 # Import the Task.Common and Task.Internal dll that has all the cmdlets we need for Build
 import-module "Microsoft.TeamFoundation.DistributedTask.Task.Internal"
 import-module "Microsoft.TeamFoundation.DistributedTask.Task.Common"
+. .\Get-VSPath.ps1
 
 if (!$solution)
 {
@@ -72,7 +73,7 @@ $vsLocation = $null
 if ($vsVersion -and "$vsVersion".ToUpperInvariant() -ne 'LATEST')
 {
     Write-Verbose "Searching for Visual Studio version: $vsVersion"
-    $vsLocation = Get-VisualStudioPath -Version $vsVersion
+    $vsLocation = Get-VSPath -Version $vsVersion
 
     # Warn if not found.
     if (!$vsLocation)
@@ -90,7 +91,7 @@ if (!$vsLocation)
     {
         # Look for the specific version.
         Write-Verbose "Searching for Visual Studio version: $vsVersion"
-        $vsLocation = Get-VisualStudioPath -Version $vsVersion
+        $vsLocation = Get-VSPath -Version $vsVersion
 
         # Break if found.
         if ($vsLocation)
